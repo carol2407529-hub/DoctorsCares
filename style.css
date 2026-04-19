@@ -45,10 +45,6 @@ img { display: block; max-width: 100%; }
    TYPOGRAPHY
 ========================================= */
 h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
-
-/* =========================================
-   HEADER
-========================================= */
 header {
     position: fixed; top: 0; width: 100%;
     background: rgba(255,255,255,0.92);
