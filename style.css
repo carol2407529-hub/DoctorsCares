@@ -431,9 +431,6 @@ input[type="range"] {
     font-size: 1.1rem; font-weight: 700;
 }
 
-/* =========================================
-   SERVICES
-========================================= */
 .services { padding: 9rem 7%; background: var(--bg-dark); }
 .services .section-label { color: var(--accent); }
 .services .heading { color: var(--white); }
