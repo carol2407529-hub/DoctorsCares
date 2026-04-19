@@ -41,9 +41,6 @@ img { display: block; max-width: 100%; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
 
-/* =========================================
-   TYPOGRAPHY
-========================================= */
 h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
 header {
     position: fixed; top: 0; width: 100%;
