@@ -37,9 +37,6 @@ body {
 img { display: block; max-width: 100%; }
 ::selection { background: var(--primary); color: white; }
 
-/* =========================================
-   SCROLLBAR
-========================================= */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
