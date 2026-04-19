@@ -251,9 +251,6 @@ header.scrolled {
     margin: 0 auto 5rem; line-height: 1.7;
 }
 
-/* =========================================
-   SEARCH & DOCTORS
-========================================= */
 .doctors-search-container { padding: 8rem 7%; }
 .search-bar-wrapper { margin: 0 auto 4rem; max-width: 60rem; }
 .search-bar {
