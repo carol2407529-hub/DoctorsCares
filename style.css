@@ -196,9 +196,6 @@ header.scrolled {
 .floating-card strong { display: block; font-size: 1.4rem; color: var(--text); font-weight: 700; }
 .floating-card span { font-size: 1.2rem; color: var(--text-muted); }
 
-/* =========================================
-   BUTTONS
-========================================= */
 .button { display: inline-flex; align-items: center; gap: 1rem; cursor: pointer; font-weight: 600; border-radius: 999px; }
 .btn-primary {
     background: var(--primary);
