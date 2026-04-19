@@ -115,9 +115,6 @@ header.scrolled {
     background: var(--text); border-radius: 99px;
 }
 
-/* =========================================
-   HERO
-========================================= */
 .home {
     min-height: 100vh;
     display: flex; align-items: center;
