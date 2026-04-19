@@ -19,9 +19,6 @@
     --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =========================================
-   GLOBAL RESET
-========================================= */
 *, *::before, *::after {
     margin: 0; padding: 0;
     box-sizing: border-box;
