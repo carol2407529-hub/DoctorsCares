@@ -17,10 +17,18 @@ const doctors = [
         img: "https://randomuser.me/api/portraits/men/85.jpg",
         experience: "9 yrs exp", available: false
     },
-        $(this).toggleClass('fa-times');
-        $('.navbar').toggleClass('nav-toggle');
-    });
-
+        {
+        name: "Dr. Nour El-Din", title: "Professor", specialty: "Neurology",
+        gender: "Male", price: 850, location: "Zamalek", rate: 5,
+        img: "https://randomuser.me/api/portraits/men/22.jpg",
+        experience: "22 yrs exp", available: true
+    },
+    {
+        name: "Dr. Sara Ahmed", title: "Consultant", specialty: "Pediatrics",
+        gender: "Female", price: 400, location: "Heliopolis", rate: 5,
+        img: "https://randomuser.me/api/portraits/women/26.jpg",
+        experience: "14 yrs exp", available: true
+    },
     $(window).on('scroll load', function(){
          $('.fa-bars').removeClass('fa-times');
         $('.navbar').removeClass('nav-toggle');
