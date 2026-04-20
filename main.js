@@ -141,3 +141,34 @@ const doctors = [
         });
         displayDoctors(filtered);
     }
+ // Debounce search
+    let searchTimer;
+    $('#search-input').on('input', function () {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(applyFilters, 300);
+    });
+
+    $('#filter-price').on('input', function () {
+        $('#price-value').text($(this).val() + ' EGP');
+        applyFilters();
+    });
+
+    $('#filter-title').on('change', applyFilters);
+    $('input[name="gender"]').on('change', applyFilters);
+
+    $('.star-btn').on('click', function () {
+        $('.star-btn').removeClass('active');
+        $(this).addClass('active');
+        applyFilters();
+    });
+
+    $('#reset-filters').on('click', function () {
+        $('#filter-title').val('all');
+        $('input[name="gender"][value="all"]').prop('checked', true);
+        $('#filter-price').val(1000);
+        $('#price-value').text('1000 EGP');
+        $('#search-input').val('');
+        $('.star-btn').removeClass('active');
+        $('.star-btn[data-rating="0"]').addClass('active');
+        displayDoctors(doctors);
+    });
