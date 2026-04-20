@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel – DoctorsCares</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body class="dash-body">
+
+    <!-- ══════════ SIDEBAR ══════════ -->
+    <aside class="dash-sidebar admin-sidebar" id="dash-sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="logo"><span>D</span>octors<span>C</span>ares<span class="dot">.</span></a>
+            <span class="admin-badge-logo">ADMIN</span>
+        </div>
+
+        <div class="sidebar-admin-mini">
+            <div class="sdr-avatar-wrap">
+                <img src="https://ui-avatars.com/api/?name=Super+Admin&background=2563eb&color=fff&size=128" alt="Admin" id="sidebar-avatar">
+                <span class="sdr-status-dot"></span>
+            </div>
+            <div>
+                <div class="sdr-name">Super Admin</div>
+                <div class="sdr-spec admin-role-label"><i class="fas fa-shield-alt"></i> System Administrator</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-group-label">MAIN</div>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="overview"><i class="fas fa-th-large"></i><span>Dashboard</span></a></li>
+            </ul>
+            <div class="nav-group-label">MANAGEMENT</div>
+            <ul>
+                <li><a href="#" class="nav-link" data-section="doctors"><i class="fas fa-user-md"></i><span>Doctors</span><span class="nav-badge" id="badge-doctors">4</span></a></li>
+                <li><a href="#" class="nav-link" data-section="patients"><i class="fas fa-users"></i><span>Patients</span></a></li>
+                <li><a href="#" class="nav-link" data-section="appointments"><i class="fas fa-calendar-check"></i><span>Appointments</span><span class="nav-badge" id="badge-appts">2</span></a></li>
+            </ul>
+            <div class="nav-group-label">FINANCE</div>
+            <ul>
+                <li><a href="#" class="nav-link" data-section="payments"><i class="fas fa-credit-card"></i><span>Payments</span></a></li>
+            </ul>
+            <div class="nav-group-label">CONTENT</div>
+            <ul>
+                <li><a href="#" class="nav-link" data-section="categories"><i class="fas fa-tags"></i><span>Categories</span></a></li>
+                <li><a href="#" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i><span>Reports</span></a></li>
+            </ul>
+            <div class="nav-group-label">SYSTEM</div>
+            <ul>
+                <li><a href="#" class="nav-link" data-section="notifications"><i class="fas fa-bell"></i><span>Notifications</span><span class="nav-badge notif-badge" id="badge-notif">3</span></a></li>
+                <li><a href="#" class="nav-link" data-section="settings"><i class="fas fa-cog"></i><span>System Settings</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </div>
+    </aside>
+
+    <!-- ══════════ MAIN CONTENT ══════════ -->
+    <div class="dash-main" id="dash-main">
+
+        <!-- Top Bar -->
+        <header class="dash-topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                <div class="topbar-title" id="page-title">Dashboard</div>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-date"><i class="fas fa-calendar-alt"></i> <span id="today-date"></span></div>
+                <div class="admin-status-pill"><i class="fas fa-circle"></i> System Online</div>
+                <button class="topbar-notif" id="notif-bell" data-section="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-dot" id="notif-dot"></span>
+                </button>
+                <div class="topbar-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Super+Admin&background=2563eb&color=fff&size=64" alt="Admin" id="topbar-avatar">
+                </div>
+            </div>
+        </header>
+
+        <!-- ══════════ SECTION: OVERVIEW ══════════ -->
+        <section class="dash-section active" id="section-overview">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting" id="greeting-text">Control Panel</h1>
+                    <p class="dash-subgreeting">Platform overview — monitor everything in real time.</p>
+                </div>
+                <button class="btn-primary-dash" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar"></i> View Full Reports
+                </button>
+            </div>
+
+            <!-- KPI Stats -->
+            <div class="stats-grid">
+                <div class="stat-card stat-blue">
+                    <div class="stat-icon"><i class="fas fa-user-md"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value">248</span>
+                        <span class="stat-label">Total Doctors</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> +12 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-green">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value">14,382</span>
+                        <span class="stat-label">Registered Patients</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> +340 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-amber">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value">3,091</span>
+                        <span class="stat-label">Total Bookings</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> +87 today</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-purple">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-value">182K</span>
+                        <span class="stat-label">Monthly Revenue</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> +18% vs last</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Actions Banner -->
+            <div class="alert-banner alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <strong>4 Pending Doctor Registrations</strong> awaiting your review and approval.
+                </div>
+                <button class="btn-alert-action" onclick="showSection('doctors')">Review Now <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Two columns -->
+            <div class="overview-grid">
+                <!-- Recent Activity -->
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-bolt"></i> Recent Activity</h3>
+                        <span class="card-tag">Live</span>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item activity-new">
+                            <div class="act-icon act-doctor"><i class="fas fa-user-md"></i></div>
+                            <div class="act-content">
+                                <strong>Dr. Yasmine El-Sayed</strong> submitted a new registration
+                                <span class="act-time">5 min ago</span>
+                            </div>
+                            <span class="act-badge badge-pending">Pending</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-icon act-booking"><i class="fas fa-calendar"></i></div>
+                            <div class="act-content">
+                                <strong>Ahmed Mostafa</strong> booked with Dr. Hassan
+                                <span class="act-time">12 min ago</span>
+                            </div>
+                            <span class="act-badge badge-success">Confirmed</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-icon act-payment"><i class="fas fa-credit-card"></i></div>
+                            <div class="act-content">
+                                <strong>Payment EGP 350</strong> received — Booking #4821
+                                <span class="act-time">28 min ago</span>
+                            </div>
+                            <span class="act-badge badge-success">Paid</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-icon act-warn"><i class="fas fa-flag"></i></div>
+                            <div class="act-content">
+                                <strong>Suspicious booking pattern</strong> detected — User #1045
+                                <span class="act-time">1 hr ago</span>
+                            </div>
+                            <span class="act-badge badge-warn">Review</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="act-icon act-doctor"><i class="fas fa-check-circle"></i></div>
+                            <div class="act-content">
+                                <strong>Dr. Karim Nasser</strong> approved and activated
+                                <span class="act-time">2 hr ago</span>
+                            </div>
+                            <span class="act-badge badge-success">Approved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-rocket"></i> Quick Actions</h3>
+                    </div>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn" onclick="showSection('doctors')">
+                            <i class="fas fa-user-check"></i>
+                            <span>Approve Doctors</span>
+                            <span class="qa-badge">4</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('payments')">
+                            <i class="fas fa-undo"></i>
+                            <span>Handle Refunds</span>
+                            <span class="qa-badge">2</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('notifications')">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Announcement</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('categories')">
+                            <i class="fas fa-star"></i>
+                            <span>Feature Doctor</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('patients')">
+                            <i class="fas fa-ban"></i>
+                            <span>Ban User</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('appointments')">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Force Cancel</span>
+                        </button>
+                    </div>
+
+                    <div class="system-status-box">
+                        <div class="ss-title"><i class="fas fa-server"></i> System Health</div>
+                        <div class="ss-items">
+                            <div class="ss-item"><span>API Server</span><span class="ss-dot green"></span></div>
+                            <div class="ss-item"><span>Database</span><span class="ss-dot green"></span></div>
+                            <div class="ss-item"><span>Email Service</span><span class="ss-dot green"></span></div>
+                            <div class="ss-item"><span>SMS Gateway</span><span class="ss-dot amber"></span></div>
+                            <div class="ss-item"><span>Payment Gateway</span><span class="ss-dot green"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Charts -->
+            <div class="overview-grid-3">
+                <div class="dash-card mini-chart-card">
+                    <div class="card-header"><h3>Bookings This Week</h3></div>
+                    <div class="bar-chart-mini">
+                        <div class="bar-col"><div class="bar" style="height:55%"></div><span>Mon</span></div>
+                        <div class="bar-col"><div class="bar" style="height:80%"></div><span>Tue</span></div>
+                        <div class="bar-col"><div class="bar" style="height:65%"></div><span>Wed</span></div>
+                        <div class="bar-col"><div class="bar" style="height:90%"></div><span>Thu</span></div>
+                        <div class="bar-col"><div class="bar bar-today" style="height:72%"></div><span>Fri</span></div>
+                        <div class="bar-col"><div class="bar bar-dim" style="height:40%"></div><span>Sat</span></div>
+                        <div class="bar-col"><div class="bar bar-dim" style="height:20%"></div><span>Sun</span></div>
+                    </div>
+                </div>
+                <div class="dash-card mini-chart-card">
+                    <div class="card-header"><h3>Revenue This Month</h3></div>
+                    <div class="revenue-summary">
+                        <div class="rev-big">EGP 182,400</div>
+                        <div class="rev-sub">Platform Commission (15%): <strong>EGP 27,360</strong></div>
+                        <div class="rev-bar-wrap">
+                            <div class="rev-bar"><div class="rev-fill" style="width:72%"></div></div>
+                            <span>72% of monthly target</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-card mini-chart-card">
+                    <div class="card-header"><h3>Top Specialties</h3></div>
+                    <div class="specialty-bars">
+                        <div class="spec-bar-item"><span>Cardiology</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:85%"></div></div><span>85%</span></div>
+                        <div class="spec-bar-item"><span>Dermatology</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:70%"></div></div><span>70%</span></div>
+                        <div class="spec-bar-item"><span>Pediatrics</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:62%"></div></div><span>62%</span></div>
+                        <div class="spec-bar-item"><span>Orthopedics</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:48%"></div></div><span>48%</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: DOCTORS ══════════ -->
+        <section class="dash-section" id="section-doctors">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Doctor Management</h1>
+                    <p class="dash-subgreeting">Approve, verify, edit and manage doctor accounts.</p>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn-primary-dash" onclick="openModal('add-doctor-modal')"><i class="fas fa-plus"></i> Add Doctor</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="section-tabs">
+                <button class="tab-btn active" data-tab="pending-doctors">Pending Approval <span class="tab-count">4</span></button>
+                <button class="tab-btn" data-tab="all-doctors">All Doctors <span class="tab-count">248</span></button>
+                <button class="tab-btn" data-tab="suspended-doctors">Suspended <span class="tab-count">3</span></button>
+            </div>
+
+            <!-- Pending Doctors -->
+            <div class="tab-content active" id="tab-pending-doctors">
+                <div class="dash-card">
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Specialty</th>
+                                    <th>Location</th>
+                                    <th>Submitted</th>
+                                    <th>Documents</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-user">
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                            <div><strong>Dr. Yasmine El-Sayed</strong><small>yasmine@email.com</small></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="specialty-tag">Dermatology</span></td>
+                                    <td>Cairo, Maadi</td>
+                                    <td>Today, 9:12 AM</td>
+                                    <td><button class="btn-doc-view"><i class="fas fa-file-pdf"></i> View Docs</button></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-approve" onclick="approveDoctor(this)"><i class="fas fa-check"></i> Approve</button>
+                                            <button class="btn-reject" onclick="rejectDoctor(this)"><i class="fas fa-times"></i> Reject</button>
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-user">
+                                            <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="">
+                                            <div><strong>Dr. Omar Farouk</strong><small>omar.farouk@email.com</small></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="specialty-tag">Cardiology</span></td>
+                                    <td>Alexandria</td>
+                                    <td>Yesterday</td>
+                                    <td><button class="btn-doc-view"><i class="fas fa-file-pdf"></i> View Docs</button></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-approve" onclick="approveDoctor(this)"><i class="fas fa-check"></i> Approve</button>
+                                            <button class="btn-reject" onclick="rejectDoctor(this)"><i class="fas fa-times"></i> Reject</button>
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-user">
+                                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="">
+                                            <div><strong>Dr. Nour Ibrahim</strong><small>nour.ibrahim@email.com</small></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="specialty-tag">Pediatrics</span></td>
+                                    <td>Giza</td>
+                                    <td>2 days ago</td>
+                                    <td><button class="btn-doc-view"><i class="fas fa-file-pdf"></i> View Docs</button></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-approve" onclick="approveDoctor(this)"><i class="fas fa-check"></i> Approve</button>
+                                            <button class="btn-reject" onclick="rejectDoctor(this)"><i class="fas fa-times"></i> Reject</button>
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-user">
+                                            <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="">
+                                            <div><strong>Dr. Sameh Gaber</strong><small>sameh.g@email.com</small></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="specialty-tag">Orthopedics</span></td>
+                                    <td>Cairo, Heliopolis</td>
+                                    <td>3 days ago</td>
+                                    <td><button class="btn-doc-view btn-warn-doc"><i class="fas fa-exclamation-triangle"></i> Incomplete</button></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-approve" disabled><i class="fas fa-check"></i> Approve</button>
+                                            <button class="btn-reject" onclick="rejectDoctor(this)"><i class="fas fa-times"></i> Reject</button>
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Doctors -->
+            <div class="tab-content" id="tab-all-doctors">
+                <div class="dash-card">
+                    <div class="table-toolbar">
+                        <input type="text" class="table-search" placeholder="Search doctor by name, specialty…">
+                        <select class="table-filter">
+                            <option>All Specialties</option>
+                            <option>Cardiology</option>
+                            <option>Dermatology</option>
+                            <option>Pediatrics</option>
+                        </select>
+                        <select class="table-filter">
+                            <option>All Cities</option>
+                            <option>Cairo</option>
+                            <option>Alexandria</option>
+                            <option>Giza</option>
+                        </select>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Specialty</th>
+                                    <th>Location</th>
+                                    <th>Rating</th>
+                                    <th>Appointments</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="table-user"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt=""><div><strong>Dr. Hassan Mahmoud</strong><small>hassan.m@email.com</small></div></div></td>
+                                    <td><span class="specialty-tag">Cardiology</span></td>
+                                    <td>Cairo, Nasr City</td>
+                                    <td><span class="rating-stars">★★★★★ 4.9</span></td>
+                                    <td>342</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-feature-sm" onclick="toggleFeatured(this)"><i class="fas fa-star"></i></button>
+                                            <button class="btn-suspend-sm" onclick="openModal('suspend-modal')"><i class="fas fa-ban"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div class="table-user"><img src="https://randomuser.me/api/portraits/women/28.jpg" alt=""><div><strong>Dr. Sara Khalid</strong><small>sara.k@email.com</small></div></div></td>
+                                    <td><span class="specialty-tag">Dermatology</span></td>
+                                    <td>Alexandria</td>
+                                    <td><span class="rating-stars">★★★★☆ 4.6</span></td>
+                                    <td>218</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-edit-sm" onclick="openModal('edit-doctor-modal')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-feature-sm featured" onclick="toggleFeatured(this)"><i class="fas fa-star"></i></button>
+                                            <button class="btn-suspend-sm" onclick="openModal('suspend-modal')"><i class="fas fa-ban"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suspended -->
+            <div class="tab-content" id="tab-suspended-doctors">
+                <div class="dash-card">
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr><th>Doctor</th><th>Specialty</th><th>Suspended On</th><th>Reason</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="table-user"><img src="https://randomuser.me/api/portraits/men/80.jpg" alt=""><div><strong>Dr. Tarek Samir</strong><small>tarek.s@email.com</small></div></div></td>
+                                    <td><span class="specialty-tag">Neurology</span></td>
+                                    <td>Jan 12, 2025</td>
+                                    <td><span class="reason-tag">Policy Violation</span></td>
+                                    <td><div class="action-btns"><button class="btn-approve"><i class="fas fa-redo"></i> Reinstate</button><button class="btn-reject"><i class="fas fa-trash"></i> Delete</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: PATIENTS ══════════ -->
+        <section class="dash-section" id="section-patients">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Patient Management</h1>
+                    <p class="dash-subgreeting">View, manage and moderate patient accounts.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid stats-small">
+                <div class="stat-card stat-blue"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-info"><span class="stat-value">14,382</span><span class="stat-label">Total Patients</span></div></div>
+                <div class="stat-card stat-green"><div class="stat-icon"><i class="fas fa-user-check"></i></div><div class="stat-info"><span class="stat-value">13,901</span><span class="stat-label">Active</span></div></div>
+                <div class="stat-card stat-red"><div class="stat-icon"><i class="fas fa-ban"></i></div><div class="stat-info"><span class="stat-value">48</span><span class="stat-label">Banned</span></div></div>
+                <div class="stat-card stat-amber"><div class="stat-icon"><i class="fas fa-flag"></i></div><div class="stat-info"><span class="stat-value">12</span><span class="stat-label">Flagged</span></div></div>
+            </div>
+
+            <div class="dash-card">
+                <div class="table-toolbar">
+                    <input type="text" class="table-search" placeholder="Search patient by name, email, phone…">
+                    <select class="table-filter">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Banned</option>
+                        <option>Flagged</option>
+                    </select>
+                    <select class="table-filter">
+                        <option>All Cities</option>
+                        <option>Cairo</option>
+                        <option>Alexandria</option>
+                    </select>
+                </div>
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>Patient</th><th>Phone</th><th>City</th><th>Bookings</th><th>Joined</th><th>Status</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="table-user"><img src="https://randomuser.me/api/portraits/men/21.jpg" alt=""><div><strong>Ahmed Mostafa</strong><small>ahmed.m@email.com</small></div></div></td>
+                                <td>+20 100 123 4567</td>
+                                <td>Cairo</td>
+                                <td>14</td>
+                                <td>Mar 2024</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><div class="action-btns"><button class="btn-edit-sm" onclick="openModal('view-patient-modal')"><i class="fas fa-eye"></i></button><button class="btn-suspend-sm" onclick="openModal('ban-modal')"><i class="fas fa-ban"></i></button></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="table-user"><img src="https://randomuser.me/api/portraits/women/35.jpg" alt=""><div><strong>Mariam Adel</strong><small>mariam.a@email.com</small></div></div></td>
+                                <td>+20 112 987 6543</td>
+                                <td>Giza</td>
+                                <td>8</td>
+                                <td>Jun 2024</td>
+                                <td><span class="status-badge status-flagged">Flagged</span></td>
+                                <td><div class="action-btns"><button class="btn-edit-sm" onclick="openModal('view-patient-modal')"><i class="fas fa-eye"></i></button><button class="btn-suspend-sm" onclick="openModal('ban-modal')"><i class="fas fa-ban"></i></button></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="table-user"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""><div><strong>Khaled Hussein</strong><small>khaled.h@email.com</small></div></div></td>
+                                <td>+20 115 456 7890</td>
+                                <td>Alexandria</td>
+                                <td>2</td>
+                                <td>Nov 2024</td>
+                                <td><span class="status-badge status-banned">Banned</span></td>
+                                <td><div class="action-btns"><button class="btn-edit-sm"><i class="fas fa-eye"></i></button><button class="btn-approve"><i class="fas fa-redo"></i></button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: APPOINTMENTS ══════════ -->
+        <section class="dash-section" id="section-appointments">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Appointments Monitor</h1>
+                    <p class="dash-subgreeting">View all bookings, detect abuse, force-cancel or modify.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid stats-small">
+                <div class="stat-card stat-green"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-info"><span class="stat-value">2,841</span><span class="stat-label">Confirmed</span></div></div>
+                <div class="stat-card stat-amber"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-info"><span class="stat-value">183</span><span class="stat-label">Pending</span></div></div>
+                <div class="stat-card stat-red"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-info"><span class="stat-value">67</span><span class="stat-label">Cancelled</span></div></div>
+                <div class="stat-card stat-purple"><div class="stat-icon"><i class="fas fa-flag"></i></div><div class="stat-info"><span class="stat-value">2</span><span class="stat-label">Flagged Abuse</span></div></div>
+            </div>
+
+            <!-- Abuse Alert -->
+            <div class="alert-banner alert-danger">
+                <i class="fas fa-shield-alt"></i>
+                <div><strong>Abuse Detected:</strong> User #1045 made 12 bookings in the last 2 hours with no shows. Recommend investigation.</div>
+                <button class="btn-alert-action" onclick="openModal('ban-modal')">Take Action <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="dash-card">
+                <div class="table-toolbar">
+                    <input type="text" class="table-search" placeholder="Search by patient, doctor, booking ID…">
+                    <select class="table-filter">
+                        <option>All Status</option>
+                        <option>Confirmed</option>
+                        <option>Pending</option>
+                        <option>Cancelled</option>
+                        <option>Flagged</option>
+                    </select>
+                    <input type="date" class="table-filter">
+                </div>
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date & Time</th><th>Fee</th><th>Status</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row-flagged">
+                                <td><strong>#4830</strong></td>
+                                <td>User #1045 (Spam?)</td>
+                                <td>Dr. Hassan Mahmoud</td>
+                                <td>Apr 20, 10:00 AM</td>
+                                <td>EGP 350</td>
+                                <td><span class="status-badge status-flagged">Flagged</span></td>
+                                <td><div class="action-btns"><button class="btn-reject" onclick="openModal('cancel-appt-modal')"><i class="fas fa-times-circle"></i> Cancel</button><button class="btn-edit-sm"><i class="fas fa-eye"></i></button></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4829</strong></td>
+                                <td>Ahmed Mostafa</td>
+                                <td>Dr. Hassan Mahmoud</td>
+                                <td>Apr 20, 11:00 AM</td>
+                                <td>EGP 350</td>
+                                <td><span class="status-badge status-active">Confirmed</span></td>
+                                <td><div class="action-btns"><button class="btn-reject" onclick="openModal('cancel-appt-modal')"><i class="fas fa-times-circle"></i> Cancel</button><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4821</strong></td>
+                                <td>Mariam Adel</td>
+                                <td>Dr. Sara Khalid</td>
+                                <td>Apr 19, 2:00 PM</td>
+                                <td>EGP 500</td>
+                                <td><span class="status-badge status-active">Confirmed</span></td>
+                                <td><div class="action-btns"><button class="btn-reject" onclick="openModal('cancel-appt-modal')"><i class="fas fa-times-circle"></i> Cancel</button><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4810</strong></td>
+                                <td>Khaled Hussein</td>
+                                <td>Dr. Omar Farouk</td>
+                                <td>Apr 18, 9:00 AM</td>
+                                <td>EGP 400</td>
+                                <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                                <td><div class="action-btns"><button class="btn-edit-sm"><i class="fas fa-eye"></i></button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: PAYMENTS ══════════ -->
+        <section class="dash-section" id="section-payments">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Payments & Finance</h1>
+                    <p class="dash-subgreeting">Track transactions, commissions and manage refunds.</p>
+                </div>
+                <button class="btn-primary-dash"><i class="fas fa-download"></i> Export Report</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card stat-green"><div class="stat-icon"><i class="fas fa-dollar-sign"></i></div><div class="stat-info"><span class="stat-value">EGP 182K</span><span class="stat-label">Total Revenue (Apr)</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +18%</span></div></div>
+                <div class="stat-card stat-blue"><div class="stat-icon"><i class="fas fa-percent"></i></div><div class="stat-info"><span class="stat-value">EGP 27,360</span><span class="stat-label">Platform Commission (15%)</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +18%</span></div></div>
+                <div class="stat-card stat-amber"><div class="stat-icon"><i class="fas fa-undo"></i></div><div class="stat-info"><span class="stat-value">EGP 4,200</span><span class="stat-label">Pending Refunds</span><span class="stat-change negative"><i class="fas fa-arrow-down"></i> 2 requests</span></div></div>
+                <div class="stat-card stat-purple"><div class="stat-icon"><i class="fas fa-chart-line"></i></div><div class="stat-info"><span class="stat-value">EGP 1.2M</span><span class="stat-label">YTD Revenue</span></div></div>
+            </div>
+
+            <!-- Refund Requests -->
+            <div class="dash-card">
+                <div class="card-header"><h3><i class="fas fa-undo"></i> Pending Refund Requests</h3><span class="card-tag card-tag-warn">2 Pending</span></div>
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead><tr><th>Booking ID</th><th>Patient</th><th>Doctor</th><th>Amount</th><th>Reason</th><th>Date</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#4790</strong></td>
+                                <td>Hana Sami</td>
+                                <td>Dr. Nasser Ali</td>
+                                <td><strong>EGP 400</strong></td>
+                                <td>Doctor cancelled last minute</td>
+                                <td>Apr 18, 2025</td>
+                                <td><div class="action-btns"><button class="btn-approve" onclick="processRefund(this)"><i class="fas fa-check"></i> Approve</button><button class="btn-reject"><i class="fas fa-times"></i> Deny</button></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>#4762</strong></td>
+                                <td>Ahmed Mostafa</td>
+                                <td>Dr. Hassan Mahmoud</td>
+                                <td><strong>EGP 350</strong></td>
+                                <td>Appointment missed by doctor</td>
+                                <td>Apr 15, 2025</td>
+                                <td><div class="action-btns"><button class="btn-approve" onclick="processRefund(this)"><i class="fas fa-check"></i> Approve</button><button class="btn-reject"><i class="fas fa-times"></i> Deny</button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transactions -->
+            <div class="dash-card">
+                <div class="card-header"><h3><i class="fas fa-list-alt"></i> Transaction History</h3></div>
+                <div class="table-toolbar">
+                    <input type="text" class="table-search" placeholder="Search transaction…">
+                    <select class="table-filter"><option>All Types</option><option>Payment</option><option>Refund</option><option>Commission</option></select>
+                    <input type="date" class="table-filter">
+                </div>
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead><tr><th>TXN ID</th><th>Patient</th><th>Doctor</th><th>Amount</th><th>Commission</th><th>Type</th><th>Date</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>#TXN-9821</td><td>Ahmed Mostafa</td><td>Dr. Hassan</td><td>EGP 350</td><td>EGP 52.50</td><td><span class="type-tag type-payment">Payment</span></td><td>Apr 20, 2025</td><td><span class="status-badge status-active">Success</span></td></tr>
+                            <tr><td>#TXN-9820</td><td>Mariam Adel</td><td>Dr. Sara</td><td>EGP 500</td><td>EGP 75.00</td><td><span class="type-tag type-payment">Payment</span></td><td>Apr 19, 2025</td><td><span class="status-badge status-active">Success</span></td></tr>
+                            <tr><td>#TXN-9815</td><td>Hana Sami</td><td>Dr. Nasser</td><td>EGP 400</td><td>—</td><td><span class="type-tag type-refund">Refund</span></td><td>Apr 18, 2025</td><td><span class="status-badge status-flagged">Pending</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: CATEGORIES ══════════ -->
+        <section class="dash-section" id="section-categories">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Content & Categories</h1>
+                    <p class="dash-subgreeting">Manage specialties, cities and featured doctors.</p>
+                </div>
+            </div>
+
+            <div class="overview-grid">
+                <!-- Specialties -->
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-stethoscope"></i> Specialties</h3>
+                        <button class="btn-card-add" onclick="openModal('add-specialty-modal')"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                    <div class="category-list">
+                        <div class="cat-item"><span class="cat-icon" style="background:#dbeafe;color:#2563eb"><i class="fas fa-heartbeat"></i></span><div class="cat-info"><strong>Cardiology</strong><small>42 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#fce7f3;color:#db2777"><i class="fas fa-allergies"></i></span><div class="cat-info"><strong>Dermatology</strong><small>38 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#d1fae5;color:#059669"><i class="fas fa-baby"></i></span><div class="cat-info"><strong>Pediatrics</strong><small>29 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#fef3c7;color:#d97706"><i class="fas fa-bone"></i></span><div class="cat-info"><strong>Orthopedics</strong><small>22 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#ede9fe;color:#7c3aed"><i class="fas fa-brain"></i></span><div class="cat-info"><strong>Neurology</strong><small>18 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#e0f2fe;color:#0284c7"><i class="fas fa-eye"></i></span><div class="cat-info"><strong>Ophthalmology</strong><small>15 doctors</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button><button class="btn-delete-sm"><i class="fas fa-trash"></i></button></div></div>
+                    </div>
+                </div>
+
+                <!-- Cities -->
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-map-marker-alt"></i> Cities / Locations</h3>
+                        <button class="btn-card-add" onclick="openModal('add-city-modal')"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                    <div class="category-list">
+                        <div class="cat-item"><span class="cat-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-city"></i></span><div class="cat-info"><strong>Cairo</strong><small>142 doctors · 8,400 patients</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#eff6ff;color:#2563eb"><i class="fas fa-city"></i></span><div class="cat-info"><strong>Alexandria</strong><small>58 doctors · 3,100 patients</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#fff7ed;color:#ea580c"><i class="fas fa-city"></i></span><div class="cat-info"><strong>Giza</strong><small>36 doctors · 2,200 patients</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></div>
+                        <div class="cat-item"><span class="cat-icon" style="background:#fdf4ff;color:#a21caf"><i class="fas fa-city"></i></span><div class="cat-info"><strong>Mansoura</strong><small>12 doctors · 900 patients</small></div><div class="cat-actions"><button class="btn-edit-sm"><i class="fas fa-edit"></i></button></div></div>
+                    </div>
+
+                    <!-- Featured Doctors -->
+                    <div class="card-header" style="margin-top:2rem"><h3><i class="fas fa-star"></i> Featured Doctors</h3></div>
+                    <div class="featured-list">
+                        <div class="featured-doctor-item">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="">
+                            <div><strong>Dr. Sara Khalid</strong><small>Dermatology · Alexandria</small></div>
+                            <button class="btn-unfeature" onclick="toggleFeatured(this)"><i class="fas fa-star"></i></button>
+                        </div>
+                        <div class="featured-doctor-item">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                            <div><strong>Dr. Hassan Mahmoud</strong><small>Cardiology · Cairo</small></div>
+                            <button class="btn-unfeature" onclick="toggleFeatured(this)"><i class="fas fa-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: REPORTS ══════════ -->
+        <section class="dash-section" id="section-reports">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Reports & Analytics</h1>
+                    <p class="dash-subgreeting">Platform-wide statistics, revenue trends and performance metrics.</p>
+                </div>
+                <div class="topbar-actions">
+                    <select class="table-filter"><option>April 2025</option><option>March 2025</option><option>February 2025</option></select>
+                    <button class="btn-primary-dash"><i class="fas fa-download"></i> Export PDF</button>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="stats-grid">
+                <div class="stat-card stat-blue"><div class="stat-icon"><i class="fas fa-user-md"></i></div><div class="stat-info"><span class="stat-value">248</span><span class="stat-label">Total Doctors</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +12 this month</span></div></div>
+                <div class="stat-card stat-green"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-info"><span class="stat-value">14,382</span><span class="stat-label">Total Patients</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +340</span></div></div>
+                <div class="stat-card stat-amber"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-info"><span class="stat-value">3,091</span><span class="stat-label">Total Bookings</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +87 today</span></div></div>
+                <div class="stat-card stat-purple"><div class="stat-icon"><i class="fas fa-dollar-sign"></i></div><div class="stat-info"><span class="stat-value">EGP 182K</span><span class="stat-label">Monthly Revenue</span><span class="stat-change positive"><i class="fas fa-arrow-up"></i> +18%</span></div></div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="overview-grid">
+                <!-- Monthly Revenue Chart -->
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-chart-area"></i> Monthly Revenue Trend</h3></div>
+                    <div class="chart-area">
+                        <div class="chart-y-labels">
+                            <span>200K</span><span>150K</span><span>100K</span><span>50K</span><span>0</span>
+                        </div>
+                        <div class="chart-bars-area">
+                            <div class="chart-bar-col"><div class="chart-bar" style="height:52%"><span class="cb-val">104K</span></div><span class="cb-label">Nov</span></div>
+                            <div class="chart-bar-col"><div class="chart-bar" style="height:60%"><span class="cb-val">120K</span></div><span class="cb-label">Dec</span></div>
+                            <div class="chart-bar-col"><div class="chart-bar" style="height:65%"><span class="cb-val">130K</span></div><span class="cb-label">Jan</span></div>
+                            <div class="chart-bar-col"><div class="chart-bar" style="height:70%"><span class="cb-val">140K</span></div><span class="cb-label">Feb</span></div>
+                            <div class="chart-bar-col"><div class="chart-bar" style="height:77%"><span class="cb-val">154K</span></div><span class="cb-label">Mar</span></div>
+                            <div class="chart-bar-col"><div class="chart-bar chart-bar-current" style="height:91%"><span class="cb-val">182K</span></div><span class="cb-label">Apr</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Performance -->
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-medal"></i> Top Doctor Performance</h3></div>
+                    <div class="perf-list">
+                        <div class="perf-item"><span class="perf-rank rank-1">1</span><img src="https://randomuser.me/api/portraits/men/32.jpg" alt=""><div class="perf-info"><strong>Dr. Hassan Mahmoud</strong><small>Cardiology</small></div><div class="perf-stats"><span>342 appts</span><span class="rating-stars">★ 4.9</span></div></div>
+                        <div class="perf-item"><span class="perf-rank rank-2">2</span><img src="https://randomuser.me/api/portraits/women/28.jpg" alt=""><div class="perf-info"><strong>Dr. Sara Khalid</strong><small>Dermatology</small></div><div class="perf-stats"><span>218 appts</span><span class="rating-stars">★ 4.6</span></div></div>
+                        <div class="perf-item"><span class="perf-rank rank-3">3</span><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""><div class="perf-info"><strong>Dr. Omar Farouk</strong><small>Cardiology</small></div><div class="perf-stats"><span>198 appts</span><span class="rating-stars">★ 4.5</span></div></div>
+                        <div class="perf-item"><span class="perf-rank">4</span><img src="https://randomuser.me/api/portraits/women/63.jpg" alt=""><div class="perf-info"><strong>Dr. Nour Ibrahim</strong><small>Pediatrics</small></div><div class="perf-stats"><span>172 appts</span><span class="rating-stars">★ 4.4</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peak Times + Specialty Breakdown -->
+            <div class="overview-grid-3">
+                <div class="dash-card">
+                    <div class="card-header"><h3>Peak Booking Hours</h3></div>
+                    <div class="peak-heatmap">
+                        <div class="peak-row"><span>Morning</span><div class="peak-bar" style="width:85%"><span>9–12 AM</span></div></div>
+                        <div class="peak-row"><span>Afternoon</span><div class="peak-bar peak-bar-med" style="width:60%"><span>12–4 PM</span></div></div>
+                        <div class="peak-row"><span>Evening</span><div class="peak-bar peak-bar-high" style="width:95%"><span>4–8 PM</span></div></div>
+                        <div class="peak-row"><span>Night</span><div class="peak-bar peak-bar-low" style="width:20%"><span>8 PM+</span></div></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="card-header"><h3>Specialty Breakdown</h3></div>
+                    <div class="specialty-bars">
+                        <div class="spec-bar-item"><span>Cardiology</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:85%"></div></div><span>85%</span></div>
+                        <div class="spec-bar-item"><span>Dermatology</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:70%"></div></div><span>70%</span></div>
+                        <div class="spec-bar-item"><span>Pediatrics</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:62%"></div></div><span>62%</span></div>
+                        <div class="spec-bar-item"><span>Orthopedics</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:48%"></div></div><span>48%</span></div>
+                        <div class="spec-bar-item"><span>Neurology</span><div class="spec-bar-track"><div class="spec-bar-fill" style="width:35%"></div></div><span>35%</span></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="card-header"><h3>New Registrations</h3></div>
+                    <div class="reg-stats">
+                        <div class="reg-item"><div class="reg-label">Doctors This Month</div><div class="reg-value reg-blue">+12</div></div>
+                        <div class="reg-item"><div class="reg-label">Patients This Month</div><div class="reg-value reg-green">+340</div></div>
+                        <div class="reg-item"><div class="reg-label">Completion Rate</div><div class="reg-value reg-amber">87%</div></div>
+                        <div class="reg-item"><div class="reg-label">Cancellation Rate</div><div class="reg-value reg-red">4.2%</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: NOTIFICATIONS ══════════ -->
+        <section class="dash-section" id="section-notifications">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">Notifications & System Control</h1>
+                    <p class="dash-subgreeting">Send announcements, manage email/SMS templates.</p>
+                </div>
+                <button class="btn-primary-dash" onclick="openModal('send-announcement-modal')"><i class="fas fa-bullhorn"></i> Send Announcement</button>
+            </div>
+
+            <div class="overview-grid">
+                <!-- Send Notification Form -->
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-paper-plane"></i> Compose Notification</h3></div>
+                    <div class="compose-form">
+                        <div class="form-field">
+                            <label>Target Audience</label>
+                            <select class="form-input">
+                                <option>All Users</option>
+                                <option>All Doctors</option>
+                                <option>All Patients</option>
+                                <option>Specific City</option>
+                                <option>Specific Specialty</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Channel</label>
+                            <div class="channel-toggles">
+                                <label class="toggle-chip active"><input type="checkbox" checked> <i class="fas fa-envelope"></i> Email</label>
+                                <label class="toggle-chip"><input type="checkbox"> <i class="fas fa-sms"></i> SMS</label>
+                                <label class="toggle-chip"><input type="checkbox"> <i class="fas fa-bell"></i> In-App</label>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label>Subject</label>
+                            <input type="text" class="form-input" placeholder="e.g. Scheduled Maintenance Notice">
+                        </div>
+                        <div class="form-field">
+                            <label>Message</label>
+                            <textarea class="form-input form-textarea" placeholder="Type your announcement…"></textarea>
+                        </div>
+                        <div class="form-field">
+                            <label>Priority</label>
+                            <select class="form-input">
+                                <option>Normal</option>
+                                <option>High</option>
+                                <option>Urgent</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary-dash btn-full" onclick="sendNotification()"><i class="fas fa-paper-plane"></i> Send Notification</button>
+                    </div>
+                </div>
+
+                <!-- Templates -->
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-file-alt"></i> Message Templates</h3><button class="btn-card-add"><i class="fas fa-plus"></i> New Template</button></div>
+                    <div class="template-list">
+                        <div class="template-item">
+                            <div class="template-icon email-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="template-info">
+                                <strong>Appointment Confirmation</strong>
+                                <small>Email · Auto-triggered on booking</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon sms-icon"><i class="fas fa-sms"></i></div>
+                            <div class="template-info">
+                                <strong>Appointment Reminder</strong>
+                                <small>SMS · 24hr before appointment</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon email-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="template-info">
+                                <strong>Doctor Approval</strong>
+                                <small>Email · Sent on doctor activation</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon email-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="template-info">
+                                <strong>Refund Processed</strong>
+                                <small>Email · On refund approval</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon sms-icon"><i class="fas fa-sms"></i></div>
+                            <div class="template-info">
+                                <strong>Account Suspended</strong>
+                                <small>SMS · On account suspension</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-flagged">Draft</span>
+                            </div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon inapp-icon"><i class="fas fa-bell"></i></div>
+                            <div class="template-info">
+                                <strong>System Maintenance</strong>
+                                <small>In-App · Manual trigger</small>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-edit-sm"><i class="fas fa-edit"></i></button>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sent History -->
+            <div class="dash-card">
+                <div class="card-header"><h3><i class="fas fa-history"></i> Sent History</h3></div>
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead><tr><th>Title</th><th>Target</th><th>Channel</th><th>Sent To</th><th>Date</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>System Maintenance Apr 25</strong></td><td>All Users</td><td><span class="type-tag type-email">Email</span></td><td>14,630</td><td>Apr 18, 2025</td><td><span class="status-badge status-active">Delivered</span></td></tr>
+                            <tr><td><strong>Ramadan Special Offer</strong></td><td>All Patients</td><td><span class="type-tag type-sms">SMS</span></td><td>14,382</td><td>Apr 1, 2025</td><td><span class="status-badge status-active">Delivered</span></td></tr>
+                            <tr><td><strong>New Feature: Video Consult</strong></td><td>All Doctors</td><td><span class="type-tag type-email">Email</span></td><td>248</td><td>Mar 20, 2025</td><td><span class="status-badge status-active">Delivered</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SECTION: SETTINGS ══════════ -->
+        <section class="dash-section" id="section-settings">
+            <div class="section-greeting">
+                <div>
+                    <h1 class="dash-greeting">System Settings</h1>
+                    <p class="dash-subgreeting">Configure platform-wide options and admin account.</p>
+                </div>
+            </div>
+
+            <div class="overview-grid">
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-percent"></i> Commission Settings</h3></div>
+                    <div class="settings-form">
+                        <div class="form-field"><label>Platform Commission (%)</label><input type="number" class="form-input" value="15" min="0" max="100"></div>
+                        <div class="form-field"><label>Minimum Booking Fee (EGP)</label><input type="number" class="form-input" value="100"></div>
+                        <div class="form-field"><label>Refund Window (hours)</label><input type="number" class="form-input" value="24"></div>
+                        <button class="btn-primary-dash" onclick="saveSettings()"><i class="fas fa-save"></i> Save Changes</button>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <div class="card-header"><h3><i class="fas fa-user-shield"></i> Admin Account</h3></div>
+                    <div class="settings-form">
+                        <div class="form-field"><label>Admin Name</label><input type="text" class="form-input" value="Super Admin"></div>
+                        <div class="form-field"><label>Email</label><input type="email" class="form-input" value="admin@doctorscares.com"></div>
+                        <div class="form-field"><label>New Password</label><input type="password" class="form-input" placeholder="Leave blank to keep current"></div>
+                        <button class="btn-primary-dash" onclick="saveSettings()"><i class="fas fa-save"></i> Update Account</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- end dash-main -->
+
+    <!-- ══════════ MODALS ══════════ -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeAllModals()"></div>
+
+    <!-- Edit Doctor Modal -->
+    <div class="modal" id="edit-doctor-modal">
+        <div class="modal-header"><h3><i class="fas fa-user-md"></i> Doctor Profile</h3><button class="modal-close" onclick="closeAllModals()"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <div class="modal-avatar-section">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" class="modal-avatar">
+                <div>
+                    <h4>Dr. Yasmine El-Sayed</h4>
+                    <span class="status-badge status-flagged">Pending Approval</span>
+                </div>
+            </div>
+            <div class="form-grid-2">
+                <div class="form-field"><label>Full Name</label><input type="text" class="form-input" value="Dr. Yasmine El-Sayed"></div>
+                <div class="form-field"><label>Email</label><input type="email" class="form-input" value="yasmine@email.com"></div>
+                <div class="form-field"><label>Specialty</label><select class="form-input"><option>Dermatology</option><option>Cardiology</option></select></div>
+                <div class="form-field"><label>City</label><select class="form-input"><option>Cairo</option><option>Alexandria</option></select></div>
+                <div class="form-field"><label>Consultation Fee (EGP)</label><input type="number" class="form-input" value="450"></div>
+                <div class="form-field"><label>Phone</label><input type="tel" class="form-input" value="+20 100 111 2222"></div>
+            </div>
+            <div class="form-field"><label>Documents</label>
+                <div class="doc-list">
+                    <div class="doc-item"><i class="fas fa-file-pdf"></i> Medical_License.pdf <span class="doc-verify verified"><i class="fas fa-check"></i> Verified</span></div>
+                    <div class="doc-item"><i class="fas fa-file-pdf"></i> Syndicate_Card.pdf <span class="doc-verify pending"><i class="fas fa-clock"></i> Pending</span></div>
+                    <div class="doc-item"><i class="fas fa-file-pdf"></i> National_ID.pdf <span class="doc-verify verified"><i class="fas fa-check"></i> Verified</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-modal-secondary" onclick="closeAllModals()">Close</button>
+            <button class="btn-reject" onclick="closeAllModals()"><i class="fas fa-times"></i> Reject</button>
+            <button class="btn-approve" onclick="closeAllModals()"><i class="fas fa-check"></i> Approve Doctor</button>
+        </div>
+    </div>
+
+    <!-- Suspend Modal -->
+    <div class="modal modal-sm" id="suspend-modal">
+        <div class="modal-header"><h3><i class="fas fa-ban"></i> Suspend Account</h3><button class="modal-close" onclick="closeAllModals()"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <p>You are about to suspend <strong>Dr. Hassan Mahmoud</strong>. This will disable their account and notify them via email.</p>
+            <div class="form-field" style="margin-top:1.6rem"><label>Reason for Suspension</label><textarea class="form-input form-textarea" placeholder="Enter reason…"></textarea></div>
+        </div>
+        <div class="modal-footer"><button class="btn-modal-secondary" onclick="closeAllModals()">Cancel</button><button class="btn-reject" onclick="closeAllModals()"><i class="fas fa-ban"></i> Confirm Suspend</button></div>
+    </div>
+
+    <!-- Ban User Modal -->
+    <div class="modal modal-sm" id="ban-modal">
+        <div class="modal-header"><h3><i class="fas fa-ban"></i> Ban User</h3><button class="modal-close" onclick="closeAllModals()"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <p>You are about to ban <strong>User #1045</strong>. All their upcoming appointments will be cancelled.</p>
+            <div class="form-field" style="margin-top:1.6rem"><label>Reason</label><select class="form-input"><option>Spam / Abuse</option><option>Fake Bookings</option><option>Policy Violation</option><option>Other</option></select></div>
+        </div>
+        <div class="modal-footer"><button class="btn-modal-secondary" onclick="closeAllModals()">Cancel</button><button class="btn-reject" onclick="closeAllModals()"><i class="fas fa-ban"></i> Ban User</button></div>
+    </div>
+
+    <!-- Cancel Appointment Modal -->
+    <div class="modal modal-sm" id="cancel-appt-modal">
+        <div class="modal-header"><h3><i class="fas fa-times-circle"></i> Force Cancel Appointment</h3><button class="modal-close" onclick="closeAllModals()"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <p>Cancel Appointment <strong>#4830</strong>? Patient will be notified and refunded.</p>
+            <div class="form-field" style="margin-top:1.6rem"><label>Cancellation Reason</label><textarea class="form-input form-textarea" placeholder="Enter reason for admin cancellation…"></textarea></div>
+        </div>
+        <div class="modal-footer"><button class="btn-modal-secondary" onclick="closeAllModals()">Cancel</button><button class="btn-reject" onclick="closeAllModals()"><i class="fas fa-times-circle"></i> Force Cancel</button></div>
+    </div>
+
+    <!-- Send Announcement Modal -->
+    <div class="modal modal-sm" id="send-announcement-modal">
+        <div class="modal-header"><h3><i class="fas fa-bullhorn"></i> Quick Announcement</h3><button class="modal-close" onclick="closeAllModals()"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <div class="form-field"><label>Message</label><textarea class="form-input form-textarea" placeholder="Type your system announcement…"></textarea></div>
+        </div>
+        <div class="modal-footer"><button class="btn-modal-secondary" onclick="closeAllModals()">Cancel</button><button class="btn-approve" onclick="sendNotification()"><i class="fas fa-paper-plane"></i> Send to All</button></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="admin-toast" id="admin-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-msg">Action completed successfully.</span>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
