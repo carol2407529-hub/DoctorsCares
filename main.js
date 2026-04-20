@@ -117,3 +117,27 @@ const doctors = [
     }
 
     displayDoctors(doctors);
+ // ─── Filtering Logic ─────────────────────────────────────
+    function getFilters() {
+        return {
+            title: $('#filter-title').val(),
+            gender: $('input[name="gender"]:checked').val(),
+            price: parseInt($('#filter-price').val()),
+            rating: parseInt($('.star-btn.active').data('rating')) || 0,
+            search: $('#search-input').val().toLowerCase().trim()
+        };
+    }
+
+    function applyFilters() {
+        const f = getFilters();
+        const filtered = doctors.filter(dr => {
+            return (
+                (f.title === 'all' || dr.title === f.title) &&
+                (f.gender === 'all' || dr.gender === f.gender) &&
+                (dr.price <= f.price) &&
+                (dr.rate >= f.rating) &&
+                (!f.search || dr.name.toLowerCase().includes(f.search) || dr.specialty.toLowerCase().includes(f.search))
+            );
+        });
+        displayDoctors(filtered);
+    }
