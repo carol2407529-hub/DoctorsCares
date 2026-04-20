@@ -106,3 +106,14 @@ const doctors = [
             </div>`;
         });
         $('#doctor-list').html(cards);
+
+        // Animate cards in
+        $('.dr-card').each(function (i) {
+            $(this).css({ opacity: 0, transform: 'translateY(20px)' });
+            setTimeout(() => {
+                $(this).css({ opacity: 1, transform: 'translateY(0)', transition: 'all 0.4s ease' });
+            }, i * 80);
+        });
+    }
+
+    displayDoctors(doctors);
