@@ -236,3 +236,46 @@ const doctors = [
             btn.html('<i class="fas fa-paper-plane"></i> Send Message').prop('disabled', false);
         }, 1500);
     });
+ // ─── Toast Notification ──────────────────────────────────
+    function showToast(msg, type = 'success') {
+        const toast = $(`
+            <div style="
+                position:fixed; bottom:3rem; right:3rem; z-index:99999;
+                background:${type === 'success' ? '#10b981' : '#ef4444'};
+                color:#fff; padding:1.8rem 2.5rem;
+                border-radius:1.2rem;
+                box-shadow:0 10px 40px rgba(0,0,0,0.2);
+                font-size:1.5rem; font-weight:600;
+                display:flex; align-items:center; gap:1.2rem;
+                max-width:40rem; font-family:'DM Sans',sans-serif;
+                transform:translateX(120%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            ">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" style="font-size:2rem;"></i>
+                ${msg}
+            </div>
+        `);
+        $('body').append(toast);
+        setTimeout(() => toast.css('transform', 'translateX(0)'), 50);
+        setTimeout(() => {
+            toast.css('transform', 'translateX(120%)');
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
+    }
+
+    // ─── Auth Toggles ────────────────────────────────────────
+    $('#to-signup').on('click', function (e) {
+        e.preventDefault();
+        $('.login-form').fadeOut(200, function () { $('.signup-form').fadeIn(200); });
+    });
+    $('#to-login').on('click', function (e) {
+        e.preventDefault();
+        $('.signup-form').fadeOut(200, function () { $('.login-form').fadeIn(200); });
+    });
+
+    // ─── Mobile Menu ─────────────────────────────────────────
+    $('#menu-btn').on('click', function () {
+        $('.navbar').toggleClass('active');
+    });
+    $('.navbar a').on('click', function () {
+        $('.navbar').removeClass('active');
+    });
