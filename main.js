@@ -29,10 +29,13 @@ const doctors = [
         img: "https://randomuser.me/api/portraits/women/26.jpg",
         experience: "14 yrs exp", available: true
     },
-    $(window).on('scroll load', function(){
-         $('.fa-bars').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-
+   {
+        name: "Dr. Tarek Saleh", title: "Specialist", specialty: "Ophthalmology",
+        gender: "Male", price: 350, location: "6th of October", rate: 4,
+        img: "https://randomuser.me/api/portraits/men/67.jpg",
+        experience: "7 yrs exp", available: true
+    }
+];
         if($(window).scrollTop() > 30){
             $('header').addClass('header-active');
         } else {
