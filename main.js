@@ -212,3 +212,27 @@ const doctors = [
     $(document).on('keydown', function (e) {
         if (e.key === 'Escape') closeModal();
     });
+
+    // ─── Modal Form Submit ───────────────────────────────────
+    $('.modal-form').on('submit', function (e) {
+        e.preventDefault();
+        const btn = $(this).find('button[type="submit"]');
+        btn.html('<i class="fas fa-spinner fa-spin"></i> Booking...').prop('disabled', true);
+        setTimeout(() => {
+            closeModal();
+            showToast('Appointment booked successfully! You will receive a confirmation shortly.', 'success');
+            btn.html('<i class="fas fa-check-circle"></i> Confirm Booking').prop('disabled', false);
+        }, 1800);
+    });
+
+    // ─── Contact Form Submit ─────────────────────────────────
+    $('.contact-form').on('submit', function (e) {
+        e.preventDefault();
+        const btn = $(this).find('button[type="submit"]');
+        btn.html('<i class="fas fa-spinner fa-spin"></i> Sending...').prop('disabled', true);
+        setTimeout(() => {
+            showToast('Message sent! We\'ll get back to you within 24 hours.', 'success');
+            this.reset();
+            btn.html('<i class="fas fa-paper-plane"></i> Send Message').prop('disabled', false);
+        }, 1500);
+    });
