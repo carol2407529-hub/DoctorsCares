@@ -36,12 +36,13 @@ const doctors = [
         experience: "7 yrs exp", available: true
     }
 ];
-        if($(window).scrollTop() > 30){
-            $('header').addClass('header-active');
-        } else {
-            $('header').removeClass('header-active');
+       $(document).ready(function () {
 
+    // ─── Header scroll effect ───────────────────────────────
+    $(window).on('scroll', function () {
+        if ($(this).scrollTop() > 60) {
+            $('#main-header').addClass('scrolled');
+        } else {
+            $('#main-header').removeClass('scrolled');
         }
     });
-});
-
