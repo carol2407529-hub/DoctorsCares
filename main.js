@@ -172,3 +172,43 @@ const doctors = [
         $('.star-btn[data-rating="0"]').addClass('active');
         displayDoctors(doctors);
     });
+ // ─── Booking Modal ───────────────────────────────────────
+    $(document).on('click', '.book-btn', function () {
+        const name = $(this).data('name');
+        const specialty = $(this).data('specialty');
+        const price = $(this).data('price');
+        const img = $(this).data('img');
+
+        $('#modal-doctor-info').html(`
+            <img src="${img}" alt="${name}">
+            <div>
+                <strong style="font-size:1.6rem">${name}</strong>
+                <span style="display:block;color:var(--primary);font-weight:700;font-size:1.3rem">${specialty}</span>
+                <span style="font-size:1.3rem;color:var(--text-muted)">Fee: ${price} EGP</span>
+            </div>
+        `);
+
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        $('.modal-form input[type="date"]').attr('min', today);
+
+        $('#booking-modal').addClass('active');
+        $('body').css('overflow', 'hidden');
+    });
+
+    $('#close-modal, .modal-overlay').on('click', function (e) {
+        if ($(e.target).is('.modal-overlay') || $(e.target).is('#close-modal') || $(e.target).closest('#close-modal').length) {
+            closeModal();
+        }
+    });
+
+    $('.modal').on('click', function (e) { e.stopPropagation(); });
+
+    function closeModal() {
+        $('#booking-modal').removeClass('active');
+        $('body').css('overflow', '');
+    }
+
+    $(document).on('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+    });
