@@ -1,3 +1,6 @@
+/* =========================================
+   ROOT VARIABLES
+========================================= */
 :root {
     --primary: #2563eb;
     --primary-dark: #1d4ed8;
@@ -19,6 +22,9 @@
     --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* =========================================
+   GLOBAL RESET
+========================================= */
 *, *::before, *::after {
     margin: 0; padding: 0;
     box-sizing: border-box;
@@ -37,11 +43,21 @@ body {
 img { display: block; max-width: 100%; }
 ::selection { background: var(--primary); color: white; }
 
+/* =========================================
+   SCROLLBAR
+========================================= */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
 
+/* =========================================
+   TYPOGRAPHY
+========================================= */
 h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
+
+/* =========================================
+   HEADER
+========================================= */
 header {
     position: fixed; top: 0; width: 100%;
     background: rgba(255,255,255,0.92);
@@ -112,6 +128,9 @@ header.scrolled {
     background: var(--text); border-radius: 99px;
 }
 
+/* =========================================
+   HERO
+========================================= */
 .home {
     min-height: 100vh;
     display: flex; align-items: center;
@@ -196,6 +215,9 @@ header.scrolled {
 .floating-card strong { display: block; font-size: 1.4rem; color: var(--text); font-weight: 700; }
 .floating-card span { font-size: 1.2rem; color: var(--text-muted); }
 
+/* =========================================
+   BUTTONS
+========================================= */
 .button { display: inline-flex; align-items: center; gap: 1rem; cursor: pointer; font-weight: 600; border-radius: 999px; }
 .btn-primary {
     background: var(--primary);
@@ -233,6 +255,9 @@ header.scrolled {
 }
 .button-outline:hover { background: var(--primary); color: var(--white); }
 
+/* =========================================
+   SECTION SHARED
+========================================= */
 .heading {
     font-size: 4rem; text-align: center;
     color: var(--text); margin-bottom: 1.5rem;
@@ -251,6 +276,9 @@ header.scrolled {
     margin: 0 auto 5rem; line-height: 1.7;
 }
 
+/* =========================================
+   SEARCH & DOCTORS
+========================================= */
 .doctors-search-container { padding: 8rem 7%; }
 .search-bar-wrapper { margin: 0 auto 4rem; max-width: 60rem; }
 .search-bar {
@@ -339,6 +367,9 @@ input[type="range"] {
 .results-header { margin-bottom: 2rem; }
 #results-count { font-size: 1.4rem; color: var(--text-muted); font-weight: 500; }
 
+/* =========================================
+   DOCTOR CARDS
+========================================= */
 .doctors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr)); gap: 3.5rem; }
 .dr-card {
     background: var(--white);
@@ -401,7 +432,7 @@ input[type="range"] {
     margin-top: 2rem; padding-top: 2rem;
     border-top: 1px solid var(--border);
 }
-.dr-price-wrap { }
+.dr-price-wrap { display:flex;gap: 1rem;}
 .dr-price-label { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; }
 .dr-price { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--text); }
 .dr-price span { font-size: 1.2rem; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text-muted); }
@@ -431,6 +462,9 @@ input[type="range"] {
     font-size: 1.1rem; font-weight: 700;
 }
 
+/* =========================================
+   SERVICES
+========================================= */
 .services { padding: 9rem 7%; background: var(--bg-dark); }
 .services .section-label { color: var(--accent); }
 .services .heading { color: var(--white); }
