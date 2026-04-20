@@ -17,7 +17,7 @@ const doctors = [
         img: "https://randomuser.me/api/portraits/men/85.jpg",
         experience: "9 yrs exp", available: false
     },
-        {
+    {
         name: "Dr. Nour El-Din", title: "Professor", specialty: "Neurology",
         gender: "Male", price: 850, location: "Zamalek", rate: 5,
         img: "https://randomuser.me/api/portraits/men/22.jpg",
@@ -29,14 +29,15 @@ const doctors = [
         img: "https://randomuser.me/api/portraits/women/26.jpg",
         experience: "14 yrs exp", available: true
     },
-   {
+    {
         name: "Dr. Tarek Saleh", title: "Specialist", specialty: "Ophthalmology",
         gender: "Male", price: 350, location: "6th of October", rate: 4,
         img: "https://randomuser.me/api/portraits/men/67.jpg",
         experience: "7 yrs exp", available: true
     }
 ];
-       $(document).ready(function () {
+
+$(document).ready(function () {
 
     // ─── Header scroll effect ───────────────────────────────
     $(window).on('scroll', function () {
@@ -46,7 +47,8 @@ const doctors = [
             $('#main-header').removeClass('scrolled');
         }
     });
-// ─── Render Doctor Cards ─────────────────────────────────
+
+    // ─── Render Doctor Cards ─────────────────────────────────
     function renderStars(rate) {
         return '★'.repeat(rate) + '☆'.repeat(5 - rate);
     }
@@ -117,7 +119,8 @@ const doctors = [
     }
 
     displayDoctors(doctors);
- // ─── Filtering Logic ─────────────────────────────────────
+
+    // ─── Filtering Logic ─────────────────────────────────────
     function getFilters() {
         return {
             title: $('#filter-title').val(),
@@ -141,7 +144,8 @@ const doctors = [
         });
         displayDoctors(filtered);
     }
- // Debounce search
+
+    // Debounce search
     let searchTimer;
     $('#search-input').on('input', function () {
         clearTimeout(searchTimer);
@@ -172,7 +176,8 @@ const doctors = [
         $('.star-btn[data-rating="0"]').addClass('active');
         displayDoctors(doctors);
     });
- // ─── Booking Modal ───────────────────────────────────────
+
+    // ─── Booking Modal ───────────────────────────────────────
     $(document).on('click', '.book-btn', function () {
         const name = $(this).data('name');
         const specialty = $(this).data('specialty');
@@ -236,7 +241,8 @@ const doctors = [
             btn.html('<i class="fas fa-paper-plane"></i> Send Message').prop('disabled', false);
         }, 1500);
     });
- // ─── Toast Notification ──────────────────────────────────
+
+    // ─── Toast Notification ──────────────────────────────────
     function showToast(msg, type = 'success') {
         const toast = $(`
             <div style="
@@ -279,7 +285,8 @@ const doctors = [
     $('.navbar a').on('click', function () {
         $('.navbar').removeClass('active');
     });
- // ─── Scroll Reveal ───────────────────────────────────────
+
+    // ─── Scroll Reveal ───────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -295,5 +302,34 @@ const doctors = [
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+     const fullName = document.getElementById("fullName");
+    const mobile = document.getElementById("mobile");
 
+    // Full Name validation message
+    if (fullName) {
+        fullName.addEventListener("invalid", function () {
+            if (fullName.validity.valueMissing) {
+                fullName.setCustomValidity("Please fill in this field.");
+            } else if (fullName.validity.patternMismatch) {
+                fullName.setCustomValidity("Only letters are allowed.");
+            }
+        });
+        fullName.addEventListener("input", function () {
+            fullName.setCustomValidity("");
+        });
+    }
+
+    // Mobile validation
+    if (mobile) {
+        mobile.addEventListener("invalid", function () {
+            if (mobile.validity.valueMissing) {
+                mobile.setCustomValidity("Please fill in this field.");
+            } else if (mobile.validity.patternMismatch) {
+                mobile.setCustomValidity("Only numbers are allowed.");
+            }
+        });
+        mobile.addEventListener("input", function () {
+            mobile.setCustomValidity("");
+        });
+    } 
 });
