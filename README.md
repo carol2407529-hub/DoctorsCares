@@ -1,15 +1,15 @@
-    # DoctorsCares
+# DoctorsCares
 
-    Egypt-focused healthcare portal built with **Node.js**, **Express**, **EJS**, and **MongoDB**. Patients can find verified doctors and book appointments; doctors manage schedules, patients, and earnings; administrators operate the platform, site content, and finances—all backed by the database, not hardcoded dashboard data.
+Egypt-focused healthcare portal built with **Node.js**, **Express**, **EJS**, and **MongoDB**. Patients can find verified doctors and book appointments; doctors manage schedules, patients, and earnings; administrators operate the platform, site content, and finances—all backed by the database, not hardcoded dashboard data.
 
-    **Live URL (local):** http://localhost:5000
+ **Live URL (local):** http://localhost:5000
 
-    ---
+ ---
 
-    ## Features
+## Features
 
-    ### Public website
-    - **Home** — Hero, live stats, testimonials (editable by admin)
+### Public website
+- **Home** — Hero, live stats, testimonials (editable by admin)
     - **Find Doctors** — Search and filter verified doctors; patients can book when logged in
     - **Services**, **About**, **Blog** — Content loaded from MongoDB
     - **Contact** — Contact details and message form (stored in DB)
