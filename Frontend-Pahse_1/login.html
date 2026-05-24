@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account – DoctorsCares</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-bg">
+
+    <div class="auth-container">
+
+        <div class="auth-logo">
+            <a href="index.html" class="logo" style="color:#ffffff;"><span>D</span>octors<span>C</span>ares<span class="dot" style="color:#60a5fa">.</span></a>
+        </div>
+
+        <div class="auth-card">
+
+            <!-- LOGIN -->
+            <div class="form-side login-form">
+                <h2>Welcome Back</h2>
+                <p>Login to manage your appointments and health records.</p>
+
+                <!-- Role Toggle -->
+                <div style="display:flex;background:#f1f5f9;border-radius:1rem;padding:0.5rem;margin-bottom:2.4rem;gap:0.5rem;">
+                    <button id="role-patient" onclick="setRole('patient')" style="flex:1;padding:1rem;border-radius:0.8rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:1.4rem;font-weight:600;background:#fff;color:var(--primary);box-shadow:0 1px 4px rgba(0,0,0,0.08);transition:all 0.2s;">
+                        <i class="fas fa-user" style="margin-right:0.6rem;"></i> Patient
+                    </button>
+                    <button id="role-doctor" onclick="setRole('doctor')" style="flex:1;padding:1rem;border-radius:0.8rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:1.4rem;font-weight:500;background:none;color:#64748b;transition:all 0.2s;">
+                        <i class="fas fa-stethoscope" style="margin-right:0.6rem;"></i> Doctor
+                    </button>
+                </div>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="input-box">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" placeholder="Email or Mobile Number" required>
+                    </div>
+                    <div class="input-box">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div style="text-align:right; margin-bottom:2rem;">
+                        <a href="#" style="font-size:1.3rem; color:var(--primary); font-weight:600;">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="button btn-primary" style="width:100%; justify-content:center; border-radius:var(--radius-sm); font-size:1.6rem; padding:1.5rem;">
+                        <i class="fas fa-sign-in-alt"></i> <span id="login-btn-text">Login as Patient</span>
+                    </button>
+                </form>
+
+                <script>
+                    var currentRole = 'patient';
+                    function setRole(role) {
+                        currentRole = role;
+                        var patBtn = document.getElementById('role-patient');
+                        var docBtn = document.getElementById('role-doctor');
+                        var btnText = document.getElementById('login-btn-text');
+                        if (role === 'patient') {
+                            patBtn.style.background='#fff'; patBtn.style.color='var(--primary)'; patBtn.style.fontWeight='600'; patBtn.style.boxShadow='0 1px 4px rgba(0,0,0,0.08)';
+                            docBtn.style.background='none'; docBtn.style.color='#64748b'; docBtn.style.fontWeight='500'; docBtn.style.boxShadow='none';
+                            btnText.textContent = 'Login as Patient';
+                        } else {
+                            docBtn.style.background='#fff'; docBtn.style.color='var(--primary)'; docBtn.style.fontWeight='600'; docBtn.style.boxShadow='0 1px 4px rgba(0,0,0,0.08)';
+                            patBtn.style.background='none'; patBtn.style.color='#64748b'; patBtn.style.fontWeight='500'; patBtn.style.boxShadow='none';
+                            btnText.textContent = 'Login as Doctor';
+                        }
+                    }
+                    function handleLogin(e) {
+                        e.preventDefault();
+                        if (currentRole === 'doctor') { window.location.href = 'doctor-dashboard.html'; }
+                        else { window.location.href = 'index.html'; }
+                    }
+                </script>
+                <div style="display:flex; align-items:center; gap:1.5rem; margin: 2.5rem 0;">
+                    <div style="flex:1;height:1px;background:var(--border);"></div>
+                    <span style="font-size:1.3rem;color:var(--text-muted);">or continue with</span>
+                    <div style="flex:1;height:1px;background:var(--border);"></div>
+                </div>
+                <button style="
+                    width:100%; padding:1.3rem; border-radius:var(--radius-sm);
+                    border:1.5px solid var(--border); background:var(--white);
+                    font-size:1.4rem; font-weight:600; cursor:pointer;
+                    display:flex; align-items:center; justify-content:center; gap:1rem;
+                    color:var(--text); font-family:'DM Sans',sans-serif;
+                    transition:all 0.3s ease;
+                " onmouseover="this.style.borderColor='#2563eb'" onmouseout="this.style.borderColor='var(--border)'">
+                    <i class="fab fa-google" style="color:#ea4335; font-size:1.6rem;"></i> Continue with Google
+                </button>
+                <p class="toggle-text">New patient? <a href="#" id="to-signup">Create an account</a></p>
+                <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Return to Home</a>
+            </div>
+
+            <!-- SIGN UP -->
+            <div class="form-side signup-form" style="display:none;">
+                <h2>Create Account</h2>
+                <p>Join thousands of patients receiving world-class care.</p>
+
+                <form>
+                    <!-- Full Name -->
+                    <div class="input-box">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" placeholder="Full Name" pattern="[A-Za-z\s]+" required>
+                    </div>
+                    <small id="nameError" style="color:red; display:none; font-size:1.2rem;">
+                        Only letters are allowed
+                    </small>
+
+                    <!-- Email -->
+                    <div class="input-box">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="input-box">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="mobile" placeholder="Mobile Number" pattern="[0-9]+" required>
+                    </div>
+                    <small id="mobileError" style="color:red; display:none; font-size:1.2rem;">
+                        Only numbers are allowed
+                    </small>
+
+                    <!-- Gender + Date -->
+                    <div class="form-row">
+                        <div class="input-box half">
+                            <i class="fas fa-venus-mars"></i>
+                            <select required>
+                                <option value="">Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+
+                        <div class="input-box half">
+                            <i class="fas fa-birthday-cake"></i>
+                            <input type="date" required>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-box">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Create Password" required>
+                    </div>
+
+                    <!-- Terms -->
+                    <div style="margin-bottom:2rem; display:flex; gap:1rem;">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" style="font-size:1.3rem;">
+                            I agree to Terms & Privacy Policy
+                        </label>
+                    </div>
+
+                    <button type="submit" class="button btn-primary" style="width:100%;">
+                        Create Account
+                    </button>
+                </form>
+
+                <p class="toggle-text">
+                    Already have an account? <a href="#" id="to-login">Login here</a>
+                </p>
+            </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
